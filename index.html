@@ -1,0 +1,485 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Muhammad Ikhsan Nur Rafid | Portfolio</title>
+    <!-- Google Fonts: Inter -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Font Awesome for Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      /* Experiment only: keep the video visible behind the page layers. */
+      .video-bg-container {
+        z-index: 0;
+      }
+
+      .video-bg {
+        filter: blur(18px) brightness(0.25) saturate(1.2);
+        transform: scale(1.04);
+      }
+
+      .overlay {
+        z-index: 1;
+      }
+
+      #network-canvas {
+        z-index: 2;
+      }
+
+      .top-nav,
+      .main-wrapper {
+        z-index: 3;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Background Video -->
+    <div class="video-bg-container">
+      <!-- The user indicated ba_pv5.mp4 will be used -->
+      <video class="video-bg" autoplay loop muted playsinline>
+        <source src="clear-morning-main/ba_pv5.mp4" type="video/mp4" />
+      </video>
+    </div>
+    <div class="overlay"></div>
+
+    <!-- Navigation Pill -->
+    <nav class="top-nav">
+      <a href="#home" class="active">Home</a>
+      <a href="#about">About</a>
+      <a href="#journey">Journey</a>
+      <a href="#arsenal">Arsenal</a>
+      <a href="#projects">Projects</a>
+      <div class="nav-socials">
+        <a href="https://github.com/Ikhsaaan334" target="_blank" title="GitHub"
+          ><i class="fab fa-github"></i
+        ></a>
+        <a
+          href="https://www.linkedin.com/in/muhammad-ikhsan-nur-rafid-4b33aa326/"
+          target="_blank"
+          title="LinkedIn"
+          ><i class="fab fa-linkedin"></i
+        ></a>
+      </div>
+    </nav>
+
+    <!-- Interactive Canvas Layer -->
+    <canvas id="network-canvas"></canvas>
+
+    <div class="main-wrapper">
+      <header id="home" class="hero-section">
+        <!-- Draggable Floating Nodes (Inspired by Design Refs) -->
+        <div class="interactive-node" style="top: 20%; left: 15%">
+          <div class="node-dot"></div>
+          <div>
+            <strong>REST API</strong>
+            <span class="node-desc">Backend Services</span>
+          </div>
+        </div>
+
+        <div class="interactive-node" style="top: 25%; right: 15%">
+          <div class="node-dot"></div>
+          <div>
+            <strong>Database Design</strong>
+            <span class="node-desc">Data Modeling</span>
+          </div>
+        </div>
+
+        <div class="interactive-node" style="top: 70%; left: 20%">
+          <div class="node-dot"></div>
+          <div>
+            <strong>Laravel</strong>
+            <span class="node-desc">Full-stack Dev</span>
+          </div>
+        </div>
+
+        <div class="interactive-node" style="top: 65%; right: 25%">
+          <div class="node-dot"></div>
+          <div>
+            <strong>System Design</strong>
+            <span class="node-desc">Scalable Architecture</span>
+          </div>
+        </div>
+
+        <div class="interactive-node" style="top: 85%; left: 45%">
+          <div class="node-dot"></div>
+          <div>
+            <strong>Cloud Computing</strong>
+            <span class="node-desc">GCP & AWS</span>
+          </div>
+        </div>
+
+        <h1 class="hero-title">
+          <span id="typewriter"></span><span class="cursor">|</span>
+        </h1>
+        <p class="hero-subtitle">
+          Aspiring Backend Engineer | API & Web Services<br />
+          Fokus membangun backend yang terstruktur, scalable, dan mudah
+          dikembangkan menggunakan Laravel, Node.js, database, dan cloud.
+        </p>
+        <div class="hero-actions">
+          <a href="#about" class="btn-primary"
+            >Explore Portfolio <i class="fas fa-arrow-right"></i
+          ></a>
+          <a
+            href="CV_Muhammad%20Ikhsan%20Nur%20Rafid.pdf"
+            download="CV_Muhammad%20Ikhsan%20Nur%20Rafid.pdf"
+            class="btn-secondary"
+          >
+            <i class="fas fa-download"></i> Download CV
+          </a>
+        </div>
+      </header>
+
+      <!-- About Section -->
+      <section id="about" class="section-container">
+        <h2 class="section-title">Whoami</h2>
+        <div class="bento-grid large">
+          <div class="glass-card">
+            <div class="card-icon-wrapper">
+              <i class="fas fa-server"></i>
+            </div>
+            <h3 class="card-title">Profile Overview</h3>
+            <p class="card-desc">
+              Halo! Aku <strong>Muhammad Ikhsan Nur Rafid</strong>. Aku punya
+              minat yang besar di dunia backend engineering, terutama dalam
+              membangun REST API, mengelola database, dan merancang service
+              yang dapat diandalkan. Aku juga sangat menikmati bahasa
+              <strong>Go</strong> karena sintaks dan pendekatannya terasa dekat
+              dengan C, bahasa yang sebelumnya sering kugunakan untuk belajar
+              pemrograman. Go membuat pengalaman tersebut lebih mudah
+              diterapkan untuk membangun backend dan berbagai jenis aplikasi.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Journey & Education Section -->
+      <section id="journey" class="section-container">
+        <h2 class="section-title">Education & Experience</h2>
+        <div class="timeline">
+          <!-- Education 1 -->
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="glass-card" style="padding: 1.5rem">
+              <h3 class="card-title">BINUS University</h3>
+              <p class="card-desc">
+                <strong>Undergraduate Student, Computer Science</strong> (Sep
+                2024 - Apr 2028)<br />
+                Memilih Computer Science untuk memperkuat fundamental software
+                engineering. Aktif menggunakan Laravel, Go, database, serta
+                mengembangkan aplikasi web dan API.
+              </p>
+            </div>
+          </div>
+          <!-- Experience 1 -->
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="glass-card" style="padding: 1.5rem">
+              <h3 class="card-title">
+                Majelis Taklim Al-Khawarizmi BINUS Bandung
+              </h3>
+              <p class="card-desc">
+                <strong>Secretary</strong> (Jan 2026 - Jan 2027)<br />
+                <strong>Aktivis Media</strong> (Jan 2025 - Jan 2026)<br />
+                Berkontribusi aktif dalam himpunan kampus, mengasah kemampuan
+                manajemen, media, dan kerja sama tim.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Certifications Section -->
+      <section id="certifications" class="section-container">
+        <h2 class="section-title">Licenses & Certifications</h2>
+        <div class="bento-grid">
+          <div class="glass-card">
+            <div class="card-icon-wrapper">
+              <i class="fas fa-layer-group"></i>
+            </div>
+            <h3 class="card-title">UXvidia - Certificate of Participation</h3>
+            <p class="card-desc">
+              <strong>ARKAVIDIA</strong> (Mei 2025)<br />
+              Berhubungan dengan keahlian dalam UI/UX Research dan Design.
+            </p>
+            <div style="margin-top: 1.5rem">
+              <a
+                href="Intro to cybersec\Participants_Certificate_Muhammad Ikhsan Nur Rafid.pdf"
+                target="_blank"
+                class="btn-secondary"
+                style="padding: 0.5rem 1rem; font-size: 0.85rem"
+              >
+                <i class="fas fa-file-pdf"></i> View Certificate
+              </a>
+            </div>
+          </div>
+          <div class="glass-card">
+            <div class="card-icon-wrapper">
+              <i class="fas fa-shield-alt"></i>
+            </div>
+            <h3 class="card-title">
+              Cyber Security 2025: How AI & ChatGPT Are Shaping Digital Defense
+            </h3>
+            <p class="card-desc">
+              <strong>BINUS ONLINE</strong> (Mar 2025)<br />
+              Mempelajari implementasi AI dalam ekosistem pertahanan digital
+              saat ini.
+            </p>
+            <div style="margin-top: 1.5rem">
+              <a
+                href="Intro to cybersec\Sertifikat_147.pdf"
+                target="_blank"
+                class="btn-secondary"
+                style="padding: 0.5rem 1rem; font-size: 0.85rem"
+              >
+                <i class="fas fa-file-pdf"></i> View Certificate
+              </a>
+            </div>
+          </div>
+          <div class="glass-card">
+            <div
+              class="card-icon-wrapper"
+              style="
+                overflow: hidden;
+                padding: 0;
+                background: none;
+                border: none;
+              "
+            >
+              <img
+                src="Intro to cybersec\introduction-to-cybersecurity.png"
+                alt="Cisco Intro to Cybersecurity Logo"
+                style="
+                  width: 100%;
+                  height: 100%;
+                  object-fit: contain;
+                  border-radius: 12px;
+                "
+              />
+            </div>
+            <h3 class="card-title">Introduction to Cybersecurity</h3>
+            <p class="card-desc">
+              <strong>Cisco</strong> (Jan 2025)<br />
+              Fondasi teknis dan fundamental industri Cyber Security berbasis
+              kurikulum Cisco.
+            </p>
+            <div style="margin-top: 1.5rem">
+              <a
+                href="Intro to cybersec\introtocysec_cisco.pdf"
+                target="_blank"
+                class="btn-secondary"
+                style="padding: 0.5rem 1rem; font-size: 0.85rem"
+              >
+                <i class="fas fa-file-pdf"></i> View Certificate
+              </a>
+            </div>
+          </div>
+          <div class="glass-card">
+            <div class="card-icon-wrapper"><i class="fas fa-database"></i></div>
+            <h3 class="card-title">Oracle — Class Certificate of Excellence</h3>
+            <p class="card-desc">
+              <strong>Oracle</strong><br />
+              Sertifikat terkait database / SQL. Klik tombol di bawah untuk
+              melihat berkas sertifikat.
+            </p>
+            <div class="cert-actions" style="margin-top: 1.5rem">
+              <a
+                href="Intro to cybersec/classcertofexcellence.pdf"
+                target="_blank"
+                class="btn-secondary"
+                style="padding: 0.5rem 1rem; font-size: 0.85rem"
+              >
+                <i class="fas fa-file-pdf"></i> View Certificate
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Arsenal Section -->
+      <section id="arsenal" class="section-container">
+        <h2 class="section-title">TechStacks</h2>
+        <div class="arsenal-logo-grid">
+          <div class="arsenal-logo" title="Laravel">
+            <i class="fab fa-laravel"></i>
+            <span>Laravel</span>
+          </div>
+          <div class="arsenal-logo" title="PHP">
+            <i class="fab fa-php"></i>
+            <span>PHP</span>
+          </div>
+          <div class="arsenal-logo" title="Go">
+            <img src="logo/Go.png" alt="Go logo">
+            <span>Go</span>
+          </div>
+          <div class="arsenal-logo" title="Node.js">
+            <i class="fab fa-node-js"></i>
+            <span>Node.js</span>
+          </div>
+          <div class="arsenal-logo" title="Python">
+            <i class="fab fa-python"></i>
+            <span>Python</span>
+          </div>
+          <div class="arsenal-logo" title="MySQL">
+            <i class="fas fa-database"></i>
+            <span>MySQL</span>
+          </div>
+          <div class="arsenal-logo" title="PostgreSQL">
+            <i class="fas fa-table"></i>
+            <span>PostgreSQL</span>
+          </div>
+          <div class="arsenal-logo" title="Docker">
+            <i class="fab fa-docker"></i>
+            <span>Docker</span>
+          </div>
+          <div class="arsenal-logo" title="Git">
+            <i class="fab fa-git-alt"></i>
+            <span>Git</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Projects Section -->
+      <section id="projects" class="section-container">
+        <h2 class="section-title">Projects & Creations</h2>
+        <div class="bento-grid">
+          <!-- Lux AI -->
+          <div class="glass-card">
+            <div class="card-icon-wrapper"><i class="fab fa-discord"></i></div>
+            <h3 class="card-title">Lux AI</h3>
+            <p class="card-desc">
+              Discord bot multifungsi dengan command handler dan integrasi API
+              untuk membantu kebutuhan komunitas.
+            </p>
+            <div style="margin-top: 1.5rem">
+              <a
+                href="https://github.com/Ikhsaaan334/lux-ai-discord-bot"
+                target="_blank"
+                class="btn-secondary"
+                style="padding: 0.5rem 1rem; font-size: 0.85rem"
+              >
+                <i class="fab fa-github"></i> View Source
+              </a>
+            </div>
+          </div>
+          <!-- E-commerce Backend -->
+          <div class="glass-card">
+            <div class="card-icon-wrapper"><i class="fas fa-cart-shopping"></i></div>
+            <h3 class="card-title">E-commerce Backend with Go</h3>
+            <p class="card-desc">
+              Project e-commerce sederhana untuk menerapkan multiple items
+              dalam cart, proses checkout, integrasi payment gateway, dan
+              download invoice.
+            </p>
+            <div style="margin-top: 1.5rem">
+              <a
+                href="https://github.com/Ikhsaaan334/lux-ai-discord-bot"
+                target="_blank"
+                class="btn-secondary"
+                style="padding: 0.5rem 1rem; font-size: 0.85rem"
+              >
+                <i class="fab fa-github"></i> View Source
+              </a>
+            </div>
+          </div>
+          <!-- Lux AI Landing Page -->
+          <div class="glass-card">
+            <div class="card-icon-wrapper"><i class="fas fa-globe"></i></div>
+            <h3 class="card-title">Lux AI Landing Page</h3>
+            <p class="card-desc">
+              Landing page untuk showcase dan invite bot Lux AI dengan alur
+              integrasi ke layanan bot.
+            </p>
+            <div style="margin-top: 1.5rem">
+              <a
+                href="https://github.com/Ikhsaaan334/luxai-web"
+                target="_blank"
+                class="btn-secondary"
+                style="padding: 0.5rem 1rem; font-size: 0.85rem"
+              >
+                <i class="fab fa-github"></i> View Source
+              </a>
+            </div>
+          </div>
+          <!-- ASL Translator -->
+          <div class="glass-card">
+            <div class="card-icon-wrapper">
+              <i class="fas fa-sign-language"></i>
+            </div>
+            <h3 class="card-title">ASL Translator Model</h3>
+            <p class="card-desc">
+              Model machine learning untuk menerjemahkan alfabet ASL, dengan
+              potensi dikembangkan menjadi service API.
+            </p>
+            <div style="margin-top: 1.5rem">
+              <a
+                href="https://github.com/Ikhsaaan334/ASL-Alphabet-Translator-Model"
+                target="_blank"
+                class="btn-secondary"
+                style="padding: 0.5rem 1rem; font-size: 0.85rem"
+              >
+                <i class="fab fa-github"></i> View Source
+              </a>
+            </div>
+          </div>
+          <!-- Personal Blog -->
+          <div class="glass-card">
+            <div class="card-icon-wrapper"><i class="fas fa-blog"></i></div>
+            <h3 class="card-title">Sensei Desk (Blog)</h3>
+            <p class="card-desc">
+              Personal blog bertema Blue Archive dengan Laravel 12 sebagai
+              backend dan React JS sebagai frontend.
+            </p>
+            <div style="margin-top: 1.5rem">
+              <a
+                href="https://github.com/Ikhsaaan334/sensei-desk"
+                target="_blank"
+                class="btn-secondary"
+                style="padding: 0.5rem 1rem; font-size: 0.85rem"
+              >
+                <i class="fab fa-github"></i> View Source
+              </a>
+            </div>
+          </div>
+          <!-- Weather App -->
+          <div class="glass-card">
+            <div class="card-icon-wrapper">
+              <i class="fas fa-cloud-sun"></i>
+            </div>
+            <h3 class="card-title">Weather App</h3>
+            <p class="card-desc">
+              Aplikasi informasi cuaca real-time dengan Laravel 13 sebagai
+              backend untuk mengambil dan menyajikan data dari API cuaca.
+            </p>
+            <div style="margin-top: 1.5rem">
+              <a
+                href="https://github.com/Ikhsaaan334/weatherinformation-app"
+                target="_blank"
+                class="btn-secondary"
+                style="padding: 0.5rem 1rem; font-size: 0.85rem"
+              >
+                <i class="fab fa-github"></i> View Source
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <footer>
+        <p>Muhammad Ikhsan Nur Rafid</p>
+      </footer>
+    </div>
+
+    <script src="https://unpkg.com/lenis@1.3.4/dist/lenis.min.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
