@@ -34,9 +34,12 @@
         z-index: 2;
       }
 
-      .top-nav,
       .main-wrapper {
         z-index: 3;
+      }
+
+      .top-nav {
+        z-index: 100;
       }
     </style>
   </head>
@@ -150,12 +153,12 @@
             <p class="card-desc">
               Halo! Aku <strong>Muhammad Ikhsan Nur Rafid</strong>. Aku punya
               minat yang besar di dunia backend engineering, terutama dalam
-              membangun REST API, mengelola database, dan merancang service
-              yang dapat diandalkan. Aku juga sangat menikmati bahasa
+              membangun REST API, mengelola database, dan merancang service yang
+              dapat diandalkan. Aku juga sangat menikmati bahasa
               <strong>Go</strong> karena sintaks dan pendekatannya terasa dekat
               dengan C, bahasa yang sebelumnya sering kugunakan untuk belajar
-              pemrograman. Go membuat pengalaman tersebut lebih mudah
-              diterapkan untuk membangun backend dan berbagai jenis aplikasi.
+              pemrograman. Go membuat pengalaman tersebut lebih mudah diterapkan
+              untuk membangun backend dan berbagai jenis aplikasi.
             </p>
           </div>
         </div>
@@ -317,7 +320,7 @@
             <span>PHP</span>
           </div>
           <div class="arsenal-logo" title="Go">
-            <img src="logo/Go.png" alt="Go logo">
+            <img src="logo/Go.png" alt="Go logo" />
             <span>Go</span>
           </div>
           <div class="arsenal-logo" title="Node.js">
@@ -372,12 +375,14 @@
           </div>
           <!-- E-commerce Backend -->
           <div class="glass-card">
-            <div class="card-icon-wrapper"><i class="fas fa-cart-shopping"></i></div>
+            <div class="card-icon-wrapper">
+              <i class="fas fa-cart-shopping"></i>
+            </div>
             <h3 class="card-title">E-commerce Backend with Go</h3>
             <p class="card-desc">
-              Project e-commerce sederhana untuk menerapkan multiple items
-              dalam cart, proses checkout, integrasi payment gateway, dan
-              download invoice.
+              Project e-commerce sederhana untuk menerapkan multiple items dalam
+              cart, proses checkout, integrasi payment gateway, dan download
+              invoice.
             </p>
             <div style="margin-top: 1.5rem">
               <a
