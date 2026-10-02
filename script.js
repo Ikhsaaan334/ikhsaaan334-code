@@ -29,9 +29,16 @@ document.addEventListener("DOMContentLoaded", () => {
   cursorDot.style.transform = `translate3d(${cursorX}px, ${cursorY}px, 0) translate(-50%, -50%)`;
   glow.style.transform = `translate3d(${glowX}px, ${glowY}px, 0) translate(-50%, -50%)`;
 
+  let cursorActive = false;
   document.addEventListener("mousemove", (e) => {
     pointerX = e.clientX;
     pointerY = e.clientY;
+    // Tampilkan cursor dot & glow hanya setelah mouse benar-benar bergerak,
+    // supaya tidak muncul sebagai blob di tengah layar saat halaman dibuka.
+    if (!cursorActive) {
+      cursorActive = true;
+      document.body.classList.add("cursor-active");
+    }
   });
 
   function animateGlow() {
@@ -45,11 +52,45 @@ document.addEventListener("DOMContentLoaded", () => {
   }
   animateGlow();
 
+  // Mobile nav toggle (hamburger)
+  const topNav = document.querySelector(".top-nav");
+  const navToggle = document.querySelector(".nav-toggle");
+  if (topNav && navToggle) {
+    navToggle.addEventListener("click", () => {
+      const isOpen = topNav.classList.toggle("open");
+      navToggle.setAttribute("aria-expanded", String(isOpen));
+      navToggle.setAttribute(
+        "aria-label",
+        isOpen ? "Tutup menu navigasi" : "Buka menu navigasi",
+      );
+    });
+    topNav.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => {
+        topNav.classList.remove("open");
+        navToggle.setAttribute("aria-expanded", "false");
+      });
+    });
+  }
+
+  // Foto profil: jika file foto-diri.jpg tersedia, tampilkan fotonya;
+  // jika belum, placeholder tetap tampil (lihat style .has-photo).
+  const profilePhoto = document.querySelector(".profile-photo-wrapper img");
+  if (profilePhoto) {
+    const wrapper = profilePhoto.closest(".profile-photo-wrapper");
+    const markLoaded = () => wrapper.classList.add("has-photo");
+    profilePhoto.addEventListener("load", markLoaded);
+    profilePhoto.addEventListener("error", () =>
+      wrapper.classList.remove("has-photo"),
+    );
+    if (profilePhoto.complete && profilePhoto.naturalWidth > 0) markLoaded();
+  }
+
   // Draggable Nodes & Connection Canvas
   const canvas = document.getElementById("network-canvas");
   const ctx = canvas.getContext("2d");
-  const nodes = document.querySelectorAll(".interactive-node");
+  const nodes = Array.from(document.querySelectorAll(".interactive-node"));
   const centerTarget = document.querySelector(".hero-title"); // Points will connect here
+  const heroSection = document.querySelector(".hero-section");
 
   let width, height;
   function resize() {
@@ -58,33 +99,60 @@ document.addEventListener("DOMContentLoaded", () => {
     canvas.width = width;
     canvas.height = height;
   }
-  window.addEventListener("resize", resize);
+  window.addEventListener("resize", () => {
+    resize();
+    syncNodePositions();
+    clampNodes();
+  });
   resize();
 
-  // Init positions for nodes
-  const nodeData = [];
-  nodes.forEach((node, i) => {
-    // Random position around the center
-    const angle = (i / nodes.length) * Math.PI * 2;
-    const radius = Math.min(width, height) * 0.35 + Math.random() * 50;
+  // Posisi default node mengikuti inline style di HTML (diatur agar tidak
+  // menutupi judul). JS hanya menyimpan posisinya supaya bisa di-drag
+  // dan tetap berada di dalam area hero saat window di-resize.
+  const nodeData = nodes.map((node) => ({ el: node, x: 0, y: 0 }));
 
-    let x = width / 2 + Math.cos(angle) * radius;
-    let y = height / 2 + Math.sin(angle) * radius;
+  function syncNodePositions() {
+    const base = heroSection.getBoundingClientRect();
+    nodeData.forEach((data) => {
+      // Node disembunyikan via CSS di layar kecil; posisinya dibiarkan
+      // mengikuti inline style agar benar ketika layar diperbesar kembali.
+      if (data.el.offsetParent === null) return;
+      const rect = data.el.getBoundingClientRect();
+      data.x = rect.left - base.left;
+      data.y = rect.top - base.top;
+      data.el.style.left = data.x + "px";
+      data.el.style.top = data.y + "px";
+    });
+  }
 
-    node.style.left = x + "px";
-    node.style.top = y + "px";
+  function clampNodes() {
+    const maxX = Math.max(0, heroSection.clientWidth);
+    const maxY = Math.max(0, heroSection.clientHeight);
+    nodeData.forEach((data) => {
+      if (data.el.offsetParent === null) return;
+      data.x = Math.min(Math.max(data.x, 0), maxX - data.el.offsetWidth);
+      data.y = Math.min(Math.max(data.y, 0), maxY - data.el.offsetHeight);
+      data.el.style.left = data.x + "px";
+      data.el.style.top = data.y + "px";
+    });
+  }
 
-    nodeData.push({ el: node, x, y });
+  syncNodePositions();
+  clampNodes();
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(() => {
+      syncNodePositions();
+      clampNodes();
+    });
+  }
 
-    // Make draggable
-    makeDraggable(node, nodeData[i]);
-  });
+  nodeData.forEach((data) => makeDraggable(data.el, data));
 
   function makeDraggable(el, data) {
     let isDown = false;
     let startX, startY, initialX, initialY;
 
-    el.addEventListener("mousedown", (e) => {
+    el.addEventListener("pointerdown", (e) => {
       isDown = true;
       startX = e.clientX;
       startY = e.clientY;
@@ -94,7 +162,7 @@ document.addEventListener("DOMContentLoaded", () => {
       el.style.zIndex = 20;
     });
 
-    document.addEventListener("mousemove", (e) => {
+    document.addEventListener("pointermove", (e) => {
       if (!isDown) return;
       const dx = e.clientX - startX;
       const dy = e.clientY - startY;
@@ -104,7 +172,7 @@ document.addEventListener("DOMContentLoaded", () => {
       el.style.top = data.y + "px";
     });
 
-    document.addEventListener("mouseup", () => {
+    document.addEventListener("pointerup", () => {
       if (isDown) {
         isDown = false;
         el.style.transition = "box-shadow 0.3s ease, border-color 0.3s ease";
@@ -128,6 +196,7 @@ document.addEventListener("DOMContentLoaded", () => {
     ctx.lineWidth = 1;
 
     nodeData.forEach((node) => {
+      if (node.el.offsetParent === null) return; // hidden on small screens
       // Get current node center
       const nRect = node.el.getBoundingClientRect();
       const nx = nRect.left + nRect.width / 2;
@@ -149,6 +218,7 @@ document.addEventListener("DOMContentLoaded", () => {
       // Also draw lines between close nodes
       nodeData.forEach((otherNode) => {
         if (node === otherNode) return;
+        if (otherNode.el.offsetParent === null) return;
         const oRect = otherNode.el.getBoundingClientRect();
         const ox = oRect.left + oRect.width / 2;
         const oy = oRect.top + oRect.height / 2;

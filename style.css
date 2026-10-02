@@ -119,6 +119,26 @@ body {
   padding: 0.5rem;
 }
 
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.nav-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--text-main);
+  font-size: 1.15rem;
+  padding: 0.5rem;
+  cursor: pointer;
+}
+
+.nav-toggle .fa-xmark {
+  display: none;
+}
+
 /* Main Container */
 .main-wrapper {
   position: relative;
@@ -141,7 +161,7 @@ body {
 }
 
 .hero-title {
-  font-size: 5rem;
+  font-size: clamp(2.2rem, 8vw, 5rem);
   font-weight: 600;
   letter-spacing: -0.02em;
   background: linear-gradient(180deg, #fff 0%, #888 100%);
@@ -151,7 +171,7 @@ body {
   z-index: 2;
   text-wrap: balance;
   line-height: 1.1;
-  min-height: 120px; /* Pre-allocate space for 2 lines so the canvas/buttons don't jump */
+  min-height: 2.2em; /* Pre-allocate space for 2 lines so the canvas/buttons don't jump */
 }
 
 /* Typing Cursor Effect */
@@ -232,6 +252,7 @@ body {
   display: flex;
   gap: 1rem;
   justify-content: center;
+  flex-wrap: wrap;
   z-index: 2;
 }
 
@@ -258,6 +279,7 @@ body {
   gap: 0.5rem;
   cursor: grab;
   user-select: none;
+  touch-action: none;
   z-index: 10;
   transition:
     box-shadow 0.3s ease,
@@ -300,10 +322,15 @@ body {
   z-index: 2;
 }
 
+section[id],
+header[id] {
+  scroll-margin-top: 6rem;
+}
+
 .section-title {
-  font-size: 2.5rem;
+  font-size: clamp(1.7rem, 4.5vw, 2.5rem);
   font-weight: 500;
-  margin-bottom: 3rem;
+  margin-bottom: clamp(1.75rem, 5vw, 3rem);
   text-align: center;
   color: var(--text-main);
   letter-spacing: -0.02em;
@@ -312,7 +339,7 @@ body {
 /* Glassy Cards */
 .bento-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
   gap: 1.5rem;
 }
 
@@ -520,14 +547,15 @@ body {
   background: rgba(255, 71, 87, 0.1);
 }
 
-/* Mouse gradient glow */
+/* Mouse gradient glow (desktop only; di perangkat sentuh cursor dot &
+   glow tidak ada gunanya dan malah menutupi teks di tengah layar) */
 #cursor-dot {
   position: fixed;
   top: 0;
   left: 0;
   width: 18px;
   height: 18px;
-  display: block;
+  display: none;
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.88);
   pointer-events: none;
@@ -550,6 +578,7 @@ body {
   );
   border-radius: 50%;
   position: fixed;
+  display: none;
   pointer-events: none;
   z-index: 999;
   will-change: transform;
@@ -565,11 +594,17 @@ body {
     cursor: none;
   }
 
-  #cursor-dot {
+  #cursor-dot,
+  #cursor-glow {
+    display: none;
+  }
+
+  body.cursor-active #cursor-dot {
     display: block;
   }
 
-  #cursor-glow {
+  body.cursor-active #cursor-glow {
+    display: block;
     z-index: 999;
     filter: blur(80px);
   }
@@ -613,6 +648,29 @@ footer {
   text-align: center;
   color: var(--text-muted);
   font-size: 0.9rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.9rem;
+}
+
+.footer-links {
+  display: flex;
+  gap: 1.4rem;
+}
+
+.footer-links a {
+  color: var(--text-muted);
+  font-size: 1.15rem;
+  transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+  color: var(--text-main);
+}
+
+.footer-email {
+  font-size: 0.85rem;
 }
 
 /* Certificate placeholder styles */
@@ -622,4 +680,220 @@ footer {
 }
 .card-icon-wrapper .fa-database {
   font-size: 1.4rem;
+}
+
+/* Profile card (Whoami) dengan foto diri */
+.profile-card {
+  flex-direction: row;
+  align-items: center;
+  gap: 2.5rem;
+}
+
+.profile-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-photo-wrapper {
+  position: relative;
+  flex-shrink: 0;
+  width: clamp(140px, 18vw, 200px);
+  aspect-ratio: 1 / 1;
+  border-radius: 24px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--glass-border);
+}
+
+.profile-photo-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: none;
+}
+
+.profile-photo-wrapper.has-photo img {
+  display: block;
+}
+
+.profile-photo-placeholder {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  text-align: center;
+  padding: 1rem;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  border: 2px dashed rgba(255, 255, 255, 0.18);
+}
+
+.profile-photo-placeholder i {
+  font-size: 2.4rem;
+  color: rgba(255, 255, 255, 0.35);
+}
+
+.profile-photo-placeholder .placeholder-hint {
+  font-size: 0.7rem;
+  color: rgba(160, 160, 160, 0.75);
+}
+
+.profile-photo-wrapper.has-photo .profile-photo-placeholder {
+  display: none;
+}
+
+/* Contact section */
+.contact-grid {
+  max-width: 860px;
+  margin: 0 auto;
+  grid-template-columns: 1fr;
+}
+
+.contact-card {
+  gap: 1rem;
+}
+
+.contact-info {
+  flex: 1;
+}
+
+.contact-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+}
+
+.contact-actions .btn-primary,
+.contact-actions .btn-secondary {
+  padding: 0.85rem 1.4rem;
+  font-size: 0.95rem;
+}
+
+.contact-email {
+  word-break: break-all;
+}
+
+@media (min-width: 700px) {
+  .contact-card {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .contact-actions {
+    flex-direction: column;
+    align-items: stretch;
+    margin-top: 0;
+  }
+}
+
+/* ===== Responsive ===== */
+
+/* Node interaktif disembunyikan di layar kecil agar tidak menutupi teks */
+@media (max-width: 899px) {
+  .interactive-node {
+    display: none;
+  }
+}
+
+/* Nav mobile: tombol hamburger + menu dropdown */
+@media (max-width: 860px) {
+  .top-nav {
+    top: 1rem;
+    left: 1rem;
+    right: 1rem;
+    transform: none;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    padding: 0.65rem 1rem;
+    border-radius: 20px;
+  }
+
+  .nav-links {
+    display: none;
+  }
+
+  .top-nav.open .nav-links {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+    gap: 0.15rem;
+  }
+
+  .top-nav.open .nav-links a {
+    padding: 0.7rem 1rem;
+  }
+
+  .nav-socials {
+    margin-left: auto;
+    padding-left: 0;
+    border-left: none;
+    gap: 0.75rem;
+  }
+
+  .nav-toggle {
+    display: block;
+  }
+
+  .top-nav.open .nav-toggle .fa-bars {
+    display: none;
+  }
+
+  .top-nav.open .nav-toggle .fa-xmark {
+    display: block;
+  }
+}
+
+/* Kartu profil jadi stack vertikal di layar sempit */
+@media (max-width: 700px) {
+  .profile-card {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+}
+
+/* Penyesuaian ukuran HP */
+@media (max-width: 600px) {
+  .main-wrapper {
+    padding: 6.5rem 1.25rem 3rem;
+  }
+
+  .section-container {
+    margin-top: 5rem;
+  }
+
+  .glass-card {
+    padding: 1.5rem;
+  }
+
+  .hero-subtitle {
+    font-size: 1rem;
+    margin-bottom: 2.25rem;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+    width: 100%;
+    max-width: 340px;
+    margin: 0 auto;
+  }
+
+  .timeline-item {
+    padding-left: 2.25rem;
+  }
+
+  .timeline::before {
+    left: 14px;
+  }
+
+  .timeline-dot {
+    left: 9px;
+  }
 }

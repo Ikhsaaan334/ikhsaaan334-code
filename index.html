@@ -55,12 +55,21 @@
 
     <!-- Navigation Pill -->
     <nav class="top-nav">
-      <a href="#home" class="active">Home</a>
-      <a href="#about">About</a>
-      <a href="#journey">Journey</a>
-      <a href="#arsenal">Arsenal</a>
-      <a href="#projects">Projects</a>
+      <button
+        class="nav-toggle"
+        aria-label="Buka menu navigasi"
+        aria-expanded="false"
+      >
+        <i class="fas fa-bars"></i>
+        <i class="fas fa-xmark"></i>
+      </button>
       <div class="nav-socials">
+        <a
+          href="mailto:muhammad.rafid001@binus.ac.id"
+          title="Email"
+          class="nav-mail"
+          ><i class="fas fa-envelope"></i
+        ></a>
         <a href="https://github.com/Ikhsaaan334" target="_blank" title="GitHub"
           ><i class="fab fa-github"></i
         ></a>
@@ -71,6 +80,14 @@
           ><i class="fab fa-linkedin"></i
         ></a>
       </div>
+      <div class="nav-links">
+        <a href="#home" class="active">Home</a>
+        <a href="#about">About</a>
+        <a href="#journey">Journey</a>
+        <a href="#arsenal">Arsenal</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+      </div>
     </nav>
 
     <!-- Interactive Canvas Layer -->
@@ -79,31 +96,9 @@
     <div class="main-wrapper">
       <header id="home" class="hero-section">
         <!-- Draggable Floating Nodes (Inspired by Design Refs) -->
-        <div class="interactive-node" style="top: 20%; left: 15%">
-          <div class="node-dot"></div>
-          <div>
-            <strong>REST API</strong>
-            <span class="node-desc">Backend Services</span>
-          </div>
-        </div>
-
-        <div class="interactive-node" style="top: 25%; right: 15%">
-          <div class="node-dot"></div>
-          <div>
-            <strong>Database Design</strong>
-            <span class="node-desc">Data Modeling</span>
-          </div>
-        </div>
-
-        <div class="interactive-node" style="top: 70%; left: 20%">
-          <div class="node-dot"></div>
-          <div>
-            <strong>Laravel</strong>
-            <span class="node-desc">Full-stack Dev</span>
-          </div>
-        </div>
-
-        <div class="interactive-node" style="top: 65%; right: 25%">
+        <!-- Posisi default diatur via inline style (jangan menutupi nama);
+             disembunyikan otomatis di layar kecil lewat CSS. -->
+        <div class="interactive-node" style="top: 8%; left: 5%">
           <div class="node-dot"></div>
           <div>
             <strong>System Design</strong>
@@ -111,7 +106,31 @@
           </div>
         </div>
 
-        <div class="interactive-node" style="top: 85%; left: 45%">
+        <div class="interactive-node" style="top: 22%; right: 6%">
+          <div class="node-dot"></div>
+          <div>
+            <strong>REST API</strong>
+            <span class="node-desc">Backend Services</span>
+          </div>
+        </div>
+
+        <div class="interactive-node" style="top: 4%; left: 41%">
+          <div class="node-dot"></div>
+          <div>
+            <strong>Database Design</strong>
+            <span class="node-desc">Data Modeling</span>
+          </div>
+        </div>
+
+        <div class="interactive-node" style="top: 72%; left: 4%">
+          <div class="node-dot"></div>
+          <div>
+            <strong>Laravel</strong>
+            <span class="node-desc">Full-stack Dev</span>
+          </div>
+        </div>
+
+        <div class="interactive-node" style="top: 76%; right: 5%">
           <div class="node-dot"></div>
           <div>
             <strong>Cloud Computing</strong>
@@ -145,21 +164,36 @@
       <section id="about" class="section-container">
         <h2 class="section-title">Whoami</h2>
         <div class="bento-grid large">
-          <div class="glass-card">
-            <div class="card-icon-wrapper">
-              <i class="fas fa-server"></i>
+          <div class="glass-card profile-card">
+            <!-- Foto diri: cukup taruh file bernama "foto-diri.jpg" di folder
+                 yang sama dengan index.html, foto akan otomatis menggantikan
+                 placeholder di bawah ini (tidak perlu edit HTML lagi). -->
+            <div class="profile-photo-wrapper">
+              <img
+                src="logo/foto.jpeg"
+                alt="Foto Muhammad Ikhsan Nur Rafid"
+              />
+              <div class="profile-photo-placeholder">
+                <i class="fas fa-user"></i>
+                <span>Foto Diri</span>
+                <span class="placeholder-hint"
+                  >taruh <code>foto-diri.jpg</code> di folder root</span
+                >
+              </div>
             </div>
-            <h3 class="card-title">Profile Overview</h3>
-            <p class="card-desc">
-              Halo! Aku <strong>Muhammad Ikhsan Nur Rafid</strong>. Aku punya
-              minat yang besar di dunia backend engineering, terutama dalam
-              membangun REST API, mengelola database, dan merancang service yang
-              dapat diandalkan. Aku juga sangat menikmati bahasa
-              <strong>Go</strong> karena sintaks dan pendekatannya terasa dekat
-              dengan C, bahasa yang sebelumnya sering kugunakan untuk belajar
-              pemrograman. Go membuat pengalaman tersebut lebih mudah diterapkan
-              untuk membangun backend dan berbagai jenis aplikasi.
-            </p>
+            <div class="profile-info">
+              <h3 class="card-title">Profile Overview</h3>
+              <p class="card-desc">
+                Halo! Aku <strong>Muhammad Ikhsan Nur Rafid</strong>. Aku punya
+                minat yang besar di dunia backend engineering, terutama dalam
+                membangun REST API, mengelola database, dan merancang service yang
+                dapat diandalkan. Aku juga sangat menikmati bahasa
+                <strong>Go</strong> karena sintaks dan pendekatannya terasa dekat
+                dengan C, bahasa yang sebelumnya sering kugunakan untuk belajar
+                pemrograman. Go membuat pengalaman tersebut lebih mudah diterapkan
+                untuk membangun backend dan berbagai jenis aplikasi.
+              </p>
+            </div>
           </div>
         </div>
       </section>
@@ -478,9 +512,77 @@
         </div>
       </section>
 
+      <!-- Contact Section -->
+      <section id="contact" class="section-container">
+        <h2 class="section-title">Get in Touch</h2>
+        <div class="bento-grid contact-grid">
+          <div class="glass-card contact-card">
+            <div class="card-icon-wrapper">
+              <i class="fas fa-envelope"></i>
+            </div>
+            <div class="contact-info">
+              <h3 class="card-title">Contact</h3>
+              <p class="card-desc">
+                Tertarik berdiskusi, kolaborasi, atau butuh info lebih lanjut?
+                Jangan ragu untuk menghubungi aku melalui email atau platform di
+                bawah ini.
+              </p>
+            </div>
+            <div class="contact-actions">
+              <a
+                href="mailto:muhammad.rafid001@binus.ac.id"
+                class="btn-primary contact-btn"
+              >
+                <i class="fas fa-envelope"></i>
+                <span class="contact-email"
+                  >muhammad.rafid001@binus.ac.id</span
+                >
+              </a>
+              <a
+                href="https://github.com/Ikhsaaan334"
+                target="_blank"
+                class="btn-secondary contact-btn"
+              >
+                <i class="fab fa-github"></i> GitHub
+              </a>
+              <a
+                href="https://www.linkedin.com/in/muhammad-ikhsan-nur-rafid-4b33aa326/"
+                target="_blank"
+                class="btn-secondary contact-btn"
+              >
+                <i class="fab fa-linkedin"></i> LinkedIn
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <!-- Footer -->
       <footer>
         <p>Muhammad Ikhsan Nur Rafid</p>
+        <div class="footer-links">
+          <a
+            href="mailto:muhammad.rafid001@binus.ac.id"
+            title="Email"
+            aria-label="Email"
+            ><i class="fas fa-envelope"></i
+          ></a>
+          <a
+            href="https://github.com/Ikhsaaan334"
+            target="_blank"
+            title="GitHub"
+            aria-label="GitHub"
+            ><i class="fab fa-github"></i
+          ></a>
+          <a
+            href="https://www.linkedin.com/in/muhammad-ikhsan-nur-rafid-4b33aa326/"
+            target="_blank"
+            title="LinkedIn"
+            aria-label="LinkedIn"
+            ><i class="fab fa-linkedin"></i
+          ></a>
+        </div>
+        <p class="footer-email">muhammad.rafid001@binus.ac.id</p>
       </footer>
     </div>
 
