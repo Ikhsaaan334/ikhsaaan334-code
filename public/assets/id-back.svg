@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1440" viewBox="0 0 1024 1440">
+  <rect width="1024" height="1440" fill="#fafafa"/>
+  <rect x="40" y="40" width="944" height="1360" fill="none" stroke="#e4e4e7" stroke-width="3"/>
+
+  <text x="90" y="330" font-family="monospace" font-size="34" letter-spacing="10" fill="#71717a">ACCESS CARD · 2024/2028</text>
+  <line x1="90" y1="370" x2="934" y2="370" stroke="#e4e4e7" stroke-width="3"/>
+
+  <text x="90" y="500" font-family="monospace" font-size="72" font-weight="bold" fill="#0b0b0f">IKHSAN</text>
+  <text x="90" y="580" font-family="monospace" font-size="40" fill="#52525b">backend engineer</text>
+  <text x="90" y="648" font-family="monospace" font-size="30" fill="#71717a">b.sc computer science</text>
+  <text x="90" y="700" font-family="monospace" font-size="30" fill="#71717a">binus university · bandung, id</text>
+
+  <line x1="90" y1="790" x2="934" y2="790" stroke="#e4e4e7" stroke-width="3"/>
+
+  <text x="90" y="880" font-family="monospace" font-size="26" letter-spacing="6" fill="#71717a">STACK</text>
+  <text x="90" y="940" font-family="monospace" font-size="28" fill="#52525b">go · laravel · node.js</text>
+  <text x="90" y="990" font-family="monospace" font-size="28" fill="#52525b">postgres · docker · cloud</text>
+
+  <text x="90" y="1120" font-family="monospace" font-size="26" letter-spacing="6" fill="#71717a">CONTACT</text>
+  <text x="90" y="1180" font-family="monospace" font-size="28" fill="#52525b">github.com/ikhsaaan334</text>
+  <text x="90" y="1230" font-family="monospace" font-size="28" fill="#52525b">muhammad.rafid001@binus.ac.id</text>
+
+  <g fill="#0b0b0f">
+    <rect x="90" y="1300" width="8" height="60"/>
+    <rect x="106" y="1300" width="4" height="60"/>
+    <rect x="118" y="1300" width="12" height="60"/>
+    <rect x="138" y="1300" width="4" height="60"/>
+    <rect x="150" y="1300" width="8" height="60"/>
+    <rect x="166" y="1300" width="4" height="60"/>
+    <rect x="178" y="1300" width="16" height="60"/>
+    <rect x="202" y="1300" width="4" height="60"/>
+    <rect x="214" y="1300" width="8" height="60"/>
+    <rect x="230" y="1300" width="4" height="60"/>
+    <rect x="242" y="1300" width="12" height="60"/>
+    <rect x="262" y="1300" width="4" height="60"/>
+    <rect x="274" y="1300" width="8" height="60"/>
+    <rect x="290" y="1300" width="16" height="60"/>
+    <rect x="314" y="1300" width="4" height="60"/>
+    <rect x="326" y="1300" width="8" height="60"/>
+    <rect x="342" y="1300" width="4" height="60"/>
+    <rect x="354" y="1300" width="12" height="60"/>
+    <rect x="374" y="1300" width="4" height="60"/>
+    <rect x="386" y="1300" width="8" height="60"/>
+    <rect x="402" y="1300" width="4" height="60"/>
+    <rect x="414" y="1300" width="16" height="60"/>
+    <rect x="438" y="1300" width="4" height="60"/>
+    <rect x="450" y="1300" width="8" height="60"/>
+    <rect x="466" y="1300" width="12" height="60"/>
+    <rect x="486" y="1300" width="4" height="60"/>
+    <rect x="498" y="1300" width="8" height="60"/>
+  </g>
+  <text x="560" y="1340" font-family="monospace" font-size="24" fill="#71717a">v2.0</text>
+</svg>
