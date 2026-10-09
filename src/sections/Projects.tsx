@@ -37,7 +37,8 @@ export default function Projects() {
       </AnimatedContent>
 
       <p className="mt-6 text-center font-mono text-[10px] tracking-[0.18em] text-faint">
-        drag or use the arrows to browse
+        <span className="md:hidden">swipe to browse</span>
+        <span className="hidden md:inline">drag or use the arrows to browse</span>
       </p>
     </section>
   );

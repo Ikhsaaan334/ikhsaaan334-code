@@ -292,8 +292,8 @@ export default function Carousel({
         <ChevronRight className="h-5 w-5" />
       </button>
 
-      <div className="mt-5 flex w-full justify-center">
-        <div className="flex flex-wrap justify-center gap-2 px-8">
+      <div className="mt-5 flex w-full items-center justify-center">
+        <div className="hidden flex-wrap justify-center gap-2 px-8 md:flex">
           {items.map((_, index) => (
             <motion.button
               type="button"
@@ -311,6 +311,9 @@ export default function Carousel({
             />
           ))}
         </div>
+        <span className="font-mono text-[11px] tracking-[0.18em] text-faint md:hidden" aria-hidden="true">
+          {String(activeIndex + 1).padStart(2, '0')} / {String(items.length).padStart(2, '0')}
+        </span>
       </div>
     </div>
   );

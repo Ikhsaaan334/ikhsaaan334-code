@@ -8,7 +8,7 @@ export default function Stats() {
       <div className="mx-auto grid w-full max-w-6xl grid-cols-2 divide-x divide-line md:grid-cols-4">
         {stats.map((stat, i) => (
           <div key={stat.label} className="flex flex-col items-center gap-1 px-4 py-10 md:py-14">
-            <AnimatedContent distance={30} duration={0.7} delay={i * 0.08} threshold={0.3}>
+            <AnimatedContent distance={30} duration={0.7} delay={i * 0.08} threshold={0.3} className="flex w-full flex-col items-center">
               <div className="font-display text-4xl font-semibold tracking-tight text-ink md:text-5xl">
                 <CountUp to={stat.value} duration={2} separator="" />
                 <span className="text-faint">{stat.suffix}</span>

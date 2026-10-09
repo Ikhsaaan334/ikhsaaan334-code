@@ -20,6 +20,8 @@ export type DockItemData = {
   icon?: React.ReactNode;
   label?: string;
   onClick?: () => void;
+  /** When set, the item renders as a real anchor opening in a new tab (immune to popup blockers). */
+  href?: string;
   className?: string;
   active?: boolean;
   badge?: React.ReactNode;
@@ -102,7 +104,7 @@ type Motion = {
   gravity: number;
   hopping: boolean;
   drawn: string;
-  node: HTMLButtonElement | null;
+  node: HTMLButtonElement | HTMLAnchorElement | null;
 };
 
 type Actions = {
@@ -656,7 +658,7 @@ export default function Dock({
   style
 }: DockProps) {
   const rootRef = useRef<HTMLDivElement>(null);
-  const itemRefs = useRef<(HTMLButtonElement | null)[]>([]);
+  const itemRefs = useRef<(HTMLButtonElement | HTMLAnchorElement | null)[]>([]);
   const wakeRef = useRef<(() => void) | null>(null);
   const actionsRef = useRef<Actions | null>(null);
   const menuRef = useRef<MenuState | null>(null);
@@ -1103,7 +1105,7 @@ export default function Dock({
     pressRef.current = press;
   };
 
-  const onItemKeyDown = (event: React.KeyboardEvent<HTMLButtonElement>, index: number) => {
+  const onItemKeyDown = (event: React.KeyboardEvent<HTMLElement>, index: number) => {
     const toward = { bottom: 'ArrowUp', top: 'ArrowDown', left: 'ArrowRight', right: 'ArrowLeft' }[side];
     if (event.key === 'ContextMenu' || (event.shiftKey && event.key === 'F10') || event.key === toward) {
       if (openMenu(index, 'keyboard')) event.preventDefault();
@@ -1144,14 +1146,61 @@ export default function Dock({
         } as React.CSSProperties
       }
     >
-      {items.map((item, index) =>
-        item?.separator ? (
-          <span
-            key={index}
-            className={`${SEPARATOR} ${vertical ? 'h-px w-[calc(var(--dock-base)*0.72)]' : 'h-[calc(var(--dock-base)*0.72)] w-px'}`}
-            aria-hidden="true"
-          />
-        ) : (
+      {items.map((item, index) => {
+        if (item?.separator) {
+          return (
+            <span
+              key={index}
+              className={`${SEPARATOR} ${vertical ? 'h-px w-[calc(var(--dock-base)*0.72)]' : 'h-[calc(var(--dock-base)*0.72)] w-px'}`}
+              aria-hidden="true"
+            />
+          );
+        }
+        const itemBody = (
+          <>
+            <span className={TILE}>
+              <span className={`${FACE} ${tiles ? FACE_TILE : FACE_BARE}`}>{item.icon}</span>
+              {showBadges && hasBadge(item.badge) ? (
+                <span className={`${BADGE} ${item.badge === true ? BADGE_DOT : BADGE_COUNT}`}>
+                  {item.badge === true ? null : item.badge}
+                </span>
+              ) : null}
+            </span>
+            {showIndicators && item.active ? <span className={`${DOT} ${DOT_SIDES[side]}`} aria-hidden="true" /> : null}
+            {showLabels && item.label && !menu ? (
+              <span className={`${LABEL} ${LABEL_SIDES[side]}`} aria-hidden="true">
+                {item.label}
+              </span>
+            ) : null}
+          </>
+        );
+        if (item?.href) {
+          return (
+            <a
+              key={index}
+              ref={node => {
+                itemRefs.current[index] = node;
+              }}
+              href={item.href}
+              target="_blank"
+              rel="noreferrer noopener"
+              className={`${ITEM} no-underline`}
+              aria-label={item.label}
+              onClick={() => {
+                actionsRef.current?.hop(index);
+                item.onClick?.();
+              }}
+              onFocus={event => {
+                if (event.currentTarget.matches(':focus-visible')) actionsRef.current?.focus(index);
+              }}
+              onBlur={() => actionsRef.current?.focus(-1)}
+              onKeyDown={event => onItemKeyDown(event, index)}
+            >
+              {itemBody}
+            </a>
+          );
+        }
+        return (
           <button
             key={index}
             ref={node => {
@@ -1194,23 +1243,10 @@ export default function Dock({
             onBlur={() => actionsRef.current?.focus(-1)}
             onKeyDown={event => onItemKeyDown(event, index)}
           >
-            <span className={TILE}>
-              <span className={`${FACE} ${tiles ? FACE_TILE : FACE_BARE}`}>{item.icon}</span>
-              {showBadges && hasBadge(item.badge) ? (
-                <span className={`${BADGE} ${item.badge === true ? BADGE_DOT : BADGE_COUNT}`}>
-                  {item.badge === true ? null : item.badge}
-                </span>
-              ) : null}
-            </span>
-            {showIndicators && item.active ? <span className={`${DOT} ${DOT_SIDES[side]}`} aria-hidden="true" /> : null}
-            {showLabels && item.label && !menu ? (
-              <span className={`${LABEL} ${LABEL_SIDES[side]}`} aria-hidden="true">
-                {item.label}
-              </span>
-            ) : null}
+            {itemBody}
           </button>
-        )
-      )}
+        );
+      })}
       {menu ? (
         <DockMenu
           key={menu.id}

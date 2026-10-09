@@ -53,18 +53,18 @@ export default function DockNav({ activeId, theme, onToggleTheme }: DockNavProps
     {
       icon: <FaGithub className="h-[18px] w-[18px]" />,
       label: 'GitHub',
-      onClick: () => window.open(profile.github, '_blank', 'noopener'),
+      href: profile.github,
     },
     {
       icon: <FaLinkedin className="h-[18px] w-[18px]" />,
       label: 'LinkedIn',
-      onClick: () => window.open(profile.linkedin, '_blank', 'noopener'),
+      href: profile.linkedin,
     },
     { separator: true },
     {
       icon: <MdDownload className="h-5 w-5" />,
       label: 'Download CV',
-      onClick: () => window.open(profile.cv, '_blank', 'noopener'),
+      href: profile.cv,
     },
   ];
 
