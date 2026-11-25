@@ -1,0 +1,59 @@
+{
+  "schemaVersion": "mimosa-finding-ledger-batch/v1",
+  "batchId": "stop-20261124T232755176Z-16288-35b822831143",
+  "runId": "20261124T232755176Z-16288-35b822831143",
+  "runStatus": "completed",
+  "coverage": {
+    "status": "complete",
+    "reasons": []
+  },
+  "source": {
+    "component": "zcode-hook",
+    "operationId": "Stop"
+  },
+  "revision": "84e2eebbd2288842b84d4039bbb10fa44946d150",
+  "diffHash": "9c20b6889106cb2e91bbbc32ff0c71509d9a65c3031c3a8cef269a1f1f01ee94",
+  "rulesVersion": "unavailable",
+  "sessionHash": "9adf3be1b5eafa5c9c7da219ab4e0fe929a119aab2ec468316d0d1c5143874f9",
+  "reportRef": ".mimosa/reports/task-review-sess_af24ce5b-274f-467e-8eda-c61ad00d6c8f-20261124T232755176Z-16288-35b822831143.json",
+  "events": [],
+  "observedFindingIds": [],
+  "verifiedFiles": [
+    {
+      "file": "src/sections/Hero.tsx",
+      "direct": "complete",
+      "projectContext": "partial"
+    },
+    {
+      "file": "src/three/track.ts",
+      "direct": "complete",
+      "projectContext": "partial"
+    },
+    {
+      "file": "src/three/marbleMachine.ts",
+      "direct": "complete",
+      "projectContext": "partial"
+    },
+    {
+      "file": "src/components/Header.tsx",
+      "direct": "complete",
+      "projectContext": "partial"
+    },
+    {
+      "file": "src/components/Menu.tsx",
+      "direct": "complete",
+      "projectContext": "partial"
+    },
+    {
+      "file": "src/components/RouteTrack.tsx",
+      "direct": "complete",
+      "projectContext": "partial"
+    },
+    {
+      "file": "src/components/TrackSketch.tsx",
+      "direct": "complete",
+      "projectContext": "partial"
+    }
+  ],
+  "recordedAt": "2026-11-24T23:27:55.646Z"
+}

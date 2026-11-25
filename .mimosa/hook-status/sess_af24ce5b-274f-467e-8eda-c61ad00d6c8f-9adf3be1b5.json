@@ -1,0 +1,14 @@
+{
+  "schemaVersion": "mimosa-hook-status/v1",
+  "recordedAt": "2026-11-25T21:30:13.877Z",
+  "sessionId": "sess_af24ce5b-274f-467e-8eda-c61ad00d6c8f",
+  "event": "PostToolUse",
+  "toolName": "Edit",
+  "file": "C:\\Users\\pbsep\\.zcode\\cli\\memories\\projects\\ikhsaaan334-code-f563b8a99c92a1a3\\memory\\portfolio-revamp-motion-threejs.md",
+  "outcome": "clear",
+  "coverage": "complete",
+  "findingCount": 0,
+  "durationMs": 5,
+  "hostState": "hook_complete",
+  "reportHint": ".mimosa/reports/"
+}
